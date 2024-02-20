@@ -46,8 +46,13 @@
     </div>
     <div class="flex flex-col gap-2 p-4 w-full">
         <ul class="list-none flex flex-col gap-2">
-            <li class="border-2 border-solid border-black p-3" *ngFor="let calcul of listeCalculs">
-                {{ calcul.titre }}: {{ calcul.resultat }}{{ calcul.unite }}
+            <li class="border-2 border-solid border-black p-3 flex justify-between" *ngFor="let calcul of listeCalculs">
+                <div>
+                    {{ calcul.titre }} 
+                </div>
+                <div>
+                    {{ calcul.resultat }}{{ calcul.unite }}
+                </div>
             </li>
         </ul>
 

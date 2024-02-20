@@ -19,6 +19,13 @@ export class CaluletteComponent {
   unite: string = '';
   listeCalculs: { titre: string, resultat: string, unite: string }[] = [];
 
+  constructor() {
+    const storedCalculs = localStorage.getItem('calculs');
+    if (storedCalculs) {
+      this.listeCalculs = JSON.parse(storedCalculs);
+    }
+  }
+
   onButtonClicked(buttonText: string) {
     if (buttonText === '=') {
       try {
@@ -36,7 +43,15 @@ export class CaluletteComponent {
 
   ajouterALaListe() {
     if (this.produit && this.calcule && this.total && this.unite) {
-      this.listeCalculs.push({ titre: this.produit, resultat: this.total, unite: this.unite });
+      this.listeCalculs.push({
+        titre: this.produit,
+        resultat: this.total,
+        unite: this.unite
+      });
+
+      localStorage.setItem('calculs', JSON.stringify(this.listeCalculs));
+
+      // Réinitialisation des champs après l'ajout à la liste
       this.produit = '';
       this.calcule = '';
       this.total = '';
