@@ -108,20 +108,20 @@ export class CaluletteComponent {
           const unite: string = columns[2];
           this.listeCalculs.push({ titre, resultat, unite });
         } else {
-          alert(`La ligne ${index + 1} est mal formatée.`);
+          alert(`Le CSV est mal formatée.`);
         }
       });
       this.updateLocalStorageAndResetFields();
     };
 
     reader.onerror = () => {
-      console.error('Erreur de lecture du fichier.');
+      alert('Erreur de lecture du fichier.');
     };
   }
 
   exportToCSV() {
   // Nom des colonnes dans le fichier CSV
-  const csvHeader = ['Titre', 'Résultat', 'Unité'];
+  const csvHeader = ['Titre', 'Quantité', 'Unité'];
 
   // Contenu des lignes du fichier CSV
   const csvData = this.listeCalculs.map(calcul => [calcul.titre, calcul.resultat, calcul.unite].join(','));
