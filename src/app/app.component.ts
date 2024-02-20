@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styles: ``,
+  template: `<div class="flex gap-2 bg-slate-400 p-2">
+    <a routerLink="/calculette">Saisie</a>
+    <a routerLink="/inventaire">Inventaires</a>
+  </div>
+  <router-outlet/>
+  `,
+  imports: [CommonModule, RouterOutlet, RouterModule],
 })
 export class AppComponent {
   title = 'calculette';

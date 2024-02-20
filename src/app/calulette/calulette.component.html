@@ -1,0 +1,60 @@
+<section class="flex gap-2">
+    <div class="flex flex-col gap-2 p-4">
+        <div class="border-2 border-solid border-black flex flex-col gap-2">
+            <input type="text" name="produit" id="produit" [(ngModel)]="produit" placeholder="Nom du produit" />
+            <input type="text" name="calcule" id="calcule" [(ngModel)]="calcule">
+            <div class="flex gap-1">
+                <div>
+                    <input class="w-full" type="text" name="total" id="total" [(ngModel)]="total">
+                </div>
+                <select name="unite" id="unite" [(ngModel)]="unite">
+                    <option value="m²">m²</option>
+                    <option value="ml">ml</option>
+                    <option value="m³">m³</option>
+                    <option value="u">u</option>
+                    <option value="l">l</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="inline-grid gap-4 grid-cols-4 grid-rows-5" id="calculator">
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('(')">(</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked(')')">)</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('AC')">AC</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('/')">/</div>
+
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('7')">7</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('8')">8</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('9')">9</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('*')">*</div>
+
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('4')">4</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('5')">5</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('6')">6</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('-')">-</div>
+
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('1')">1</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('2')">2</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('3')">3</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('+')">+</div>
+
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('0')">0</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('.')">,</div>
+            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('=')">=</div>
+            <div class="border-2 border-solid border-black p-1 text-center cursor-pointer" (click)="ajouterALaListe()">Enter</div>
+        </div>
+    </div>
+    <div class="flex flex-col gap-2 p-4 w-full">
+        <ul class="list-none flex flex-col gap-2">
+            <li class="border-2 border-solid border-black p-3" *ngFor="let calcul of listeCalculs">
+                {{ calcul.titre }}: {{ calcul.resultat }}{{ calcul.unite }}
+            </li>
+        </ul>
+
+        <div class="flex gap-2 justify-center">
+            <button class="bg-slate-200 p-3 rounded-xl">importer un csv</button>
+            <button class="bg-slate-200 p-3 rounded-xl">imprimer</button>
+            <button class="bg-slate-200 p-3 rounded-xl">exporter un csv</button>
+        </div>
+    </div>
+</section>
