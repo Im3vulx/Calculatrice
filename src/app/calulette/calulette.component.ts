@@ -1,6 +1,8 @@
 import { FormsModule } from '@angular/forms';
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { trigger, transition, style, animate } from '@angular/animations';
+
 
 interface Calcul {
   titre: string;
@@ -16,7 +18,18 @@ interface Calcul {
     CommonModule
   ],
   templateUrl: './calulette.component.html',
-  styleUrls: ['./calulette.component.scss']
+  styleUrls: ['./calulette.component.scss'],
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class CaluletteComponent {
   calcule = '';
@@ -170,6 +183,52 @@ export class CaluletteComponent {
   // Nettoyage
   window.URL.revokeObjectURL(url);
   document.body.removeChild(a);
+}
+
+imprimer(): void {
+  // Impression de la liste des calculs
+  const printWindow = window.open('', '_blank');
+  if (printWindow) {
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Liste des éléments</title>
+          <style>
+            /* Styles CSS pour l'impression */
+            body { font-family: Arial, sans-serif; }
+            table { width: 100%; border-collapse: collapse; }
+            th, td { border: 1px solid #000; padding: 8px; }
+            th { background-color: #f2f2f2; }
+            h1 { text-align: center; }
+          </style>
+        </head>
+        <body>
+          <h1>Liste des éléments</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Titre</th>
+                <th>Résultat</th>
+                <th>Unité</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${this.listeCalculs.map(calcul => `
+                <tr>
+                  <td>${calcul.titre}</td>
+                  <td>${calcul.resultat}</td>
+                  <td>${calcul.unite}</td>
+                </tr>`).join('')}
+            </tbody>
+          </table>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+  } else {
+    console.error('Impossible d\'ouvrir la fenêtre d\'impression.');
+  }
 }
 
 }

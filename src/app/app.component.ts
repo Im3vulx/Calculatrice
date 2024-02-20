@@ -8,7 +8,11 @@ import { CaluletteComponent } from "./calulette/calulette.component";
     standalone: true,
     styles: ``,
     templateUrl: './app.component.html',
-    imports: [CommonModule, RouterOutlet, RouterModule, CaluletteComponent]
+    imports: [CommonModule, 
+      RouterOutlet, 
+      RouterModule, 
+      CaluletteComponent,
+    ]
 })
 export class AppComponent {
   title = 'calculette';

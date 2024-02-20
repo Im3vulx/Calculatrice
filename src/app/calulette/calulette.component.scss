@@ -1,0 +1,20 @@
+/* fade-in-out.animation.scss */
+
+.fade-in-out {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.fade-in-out.ng-enter,
+.fade-in-out.ng-leave {
+  opacity: 0;
+}
+
+.fade-in-out.ng-enter.ng-enter-active,
+.fade-in-out.ng-leave {
+  opacity: 1;
+}
+
+.fade-in-out.ng-leave.ng-leave-active,
+.fade-in-out.ng-enter {
+  opacity: 0;
+}

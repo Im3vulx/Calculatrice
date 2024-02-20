@@ -4,15 +4,15 @@
 </div>
 
 <section class="flex gap-2 p-4">
-    <div class="flex flex-col gap-2 p-4 w-full shadow-lg shadow-black-500/40 m-2" id="calculator" *ngIf="isCalculatorVisible">
+    <div class="flex flex-col gap-2 p-4 w-full shadow-lg shadow-black-500/40 m-2" id="calculator" *ngIf="isCalculatorVisible" [@fade]>
         <div class="flex flex-col gap-2 p-2">
-            <input type="text" name="produit" id="produit" [(ngModel)]="produit" placeholder="Nom du produit" />
-            <input type="text" name="calcule" id="calcule" [(ngModel)]="calcule" readonly>
+            <input class="p-3 shadow-lg shadow-black-500/40 rounded-xl" type="text" name="produit" id="produit" [(ngModel)]="produit" placeholder="Nom du produit" />
+            <input class="shadow-lg shadow-black-500/40 rounded-xl p-2 text-3xl" type="text" name="calcule" id="calcule" [(ngModel)]="calcule" readonly>
             <div class="flex gap-1">
                 <div class="w-full">
-                    <input class="w-full" type="text" name="total" id="total" [(ngModel)]="total" readonly>
+                    <input class="shadow-lg shadow-black-500/40 rounded-xl w-full text-lg p-2" type="text" name="total" id="total" [(ngModel)]="total" readonly>
                 </div>
-                <select name="unite" id="unite" [(ngModel)]="unite">
+                <select class="shadow-lg shadow-black-500/40 rounded-xl w-1/4 p-2" name="unite" id="unite" [(ngModel)]="unite">
                     <option value="m²">m²</option>
                     <option value="ml">ml</option>
                     <option value="m³">m³</option>
@@ -51,9 +51,9 @@
         </div>
     </div>
 
-    <div class="flex flex-col gap-2 p-4 w-full" id="inventory" *ngIf="isInventoryVisible">
+    <div class="flex flex-col gap-2 p-4 w-full" id="inventory" *ngIf="isInventoryVisible" [@fade]>
         <ul class="list-none flex flex-col gap-2">
-            <li class="shadow-lg shadow-black-500/40 rounded-xl p-3 flex justify-between" *ngFor="let calcul of listeCalculs"
+            <li class="shadow-lg shadow-black-500/40 rounded-xl p-3 flex justify-between gap-4 hover:bg-slate-300 hover:cursor-pointer" *ngFor="let calcul of listeCalculs"
                 (click)="selectionnerElement(calcul)">
                 <div>
                     {{ calcul.titre }}
@@ -69,7 +69,7 @@
                 <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
                 <button (click)="fileInput.click()">Importer un CSV</button>
             </div>
-            <button class="bg-rose-600 p-3 rounded-xl text-white">Imprimer</button>
+            <button class="bg-rose-600 p-3 rounded-xl text-white" (click)="imprimer()">Imprimer</button>
             <button class="bg-violet-600 p-3 rounded-xl text-white" (click)="exportToCSV()">Exporter en CSV</button>
         </div>
     </div>
