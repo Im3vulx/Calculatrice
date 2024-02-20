@@ -1,8 +1,6 @@
 import { FormsModule } from '@angular/forms';
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { trigger, transition, style, animate } from '@angular/animations';
-
 
 interface Calcul {
   titre: string;
@@ -19,17 +17,6 @@ interface Calcul {
   ],
   templateUrl: './calulette.component.html',
   styleUrls: ['./calulette.component.scss'],
-  animations: [
-    trigger('fade', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('300ms ease-in', style({ opacity: 1 }))
-      ]),
-      transition(':leave', [
-        animate('300ms ease-out', style({ opacity: 0 }))
-      ])
-    ])
-  ]
 })
 export class CaluletteComponent {
   calcule = '';

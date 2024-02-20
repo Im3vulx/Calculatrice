@@ -4,7 +4,7 @@
 </div>
 
 <section class="flex gap-2 p-4">
-    <div class="flex flex-col gap-2 p-4 w-full shadow-lg shadow-black-500/40 m-2" id="calculator" *ngIf="isCalculatorVisible" [@fade]>
+    <div class="flex flex-col gap-2 p-4 w-full shadow-lg shadow-black-500/40 m-2" id="calculator" *ngIf="isCalculatorVisible">
         <div class="flex flex-col gap-2 p-2">
             <input class="p-3 shadow-lg shadow-black-500/40 rounded-xl" type="text" name="produit" id="produit" [(ngModel)]="produit" placeholder="Nom du produit" />
             <input class="shadow-lg shadow-black-500/40 rounded-xl p-2 text-3xl" type="text" name="calcule" id="calcule" [(ngModel)]="calcule" readonly>
@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <div class="flex flex-col gap-2 p-4 w-full" id="inventory" *ngIf="isInventoryVisible" [@fade]>
+    <div class="flex flex-col gap-2 p-4 w-full" id="inventory" *ngIf="isInventoryVisible">
         <ul class="list-none flex flex-col gap-2">
             <li class="shadow-lg shadow-black-500/40 rounded-xl p-3 flex justify-between gap-4 hover:bg-slate-300 hover:cursor-pointer" *ngFor="let calcul of listeCalculs"
                 (click)="selectionnerElement(calcul)">
