@@ -1,18 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { CaluletteComponent } from "./calulette/calulette.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  styles: ``,
-  template: `<div class="flex gap-2 bg-slate-400 p-2">
-    <a routerLink="/calculette">Saisie</a>
-    <a routerLink="/inventaire">Inventaires</a>
-  </div>
-  <router-outlet/>
-  `,
-  imports: [CommonModule, RouterOutlet, RouterModule],
+    selector: 'app-root',
+    standalone: true,
+    styles: ``,
+    templateUrl: './app.component.html',
+    imports: [CommonModule, RouterOutlet, RouterModule, CaluletteComponent]
 })
 export class AppComponent {
   title = 'calculette';

@@ -1,5 +1,5 @@
 import { FormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface Calcul {
@@ -20,10 +20,28 @@ interface Calcul {
 })
 export class CaluletteComponent {
   calcule = '';
-  total = '';
+  total = '0';
   produit = '';
   unite = 'm²';
   listeCalculs: Calcul[] = [];
+
+  isCalculatorVisible = true;
+  isInventoryVisible = true;
+
+  toggleCalculatorVisibility() {
+    this.isCalculatorVisible = true;
+    this.isInventoryVisible = false;
+  }
+
+  toggleInventoryVisibility() {
+    this.isCalculatorVisible = false;
+    this.isInventoryVisible = true;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isInventoryVisible = window.innerWidth > 768;
+  }
 
   constructor() {
     const storedCalculs = localStorage.getItem('calculs');

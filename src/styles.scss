@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.operateur {
+    @apply rounded p-2 bg-orange-400 text-center text-white;
+}
+
+.number {
+    @apply rounded p-2 bg-blue-900 text-center text-white;
+}
+
+.operatrice {
+    @apply rounded p-2 bg-gray-400 text-center text-white;
+}
+
+.btn {
+    @apply rounded p-2 bg-indigo-400 text-center text-white md:hidden;
+}

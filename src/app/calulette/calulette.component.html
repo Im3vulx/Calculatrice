@@ -1,6 +1,11 @@
-<section class="flex gap-2">
-    <div class="flex flex-col gap-2 p-4 w-full">
-        <div class="border-2 border-solid border-black flex flex-col gap-2">
+<div class="flex justify-center gap-4">
+    <button class="btn"(click)="toggleCalculatorVisibility()">Saisie</button>
+    <button class="btn" (click)="toggleInventoryVisibility()">Inventaire</button>
+</div>
+
+<section class="flex gap-2 p-4">
+    <div class="flex flex-col gap-2 p-4 w-full shadow-lg shadow-black-500/40 m-2" id="calculator" *ngIf="isCalculatorVisible">
+        <div class="flex flex-col gap-2 p-2">
             <input type="text" name="produit" id="produit" [(ngModel)]="produit" placeholder="Nom du produit" />
             <input type="text" name="calcule" id="calcule" [(ngModel)]="calcule" readonly>
             <div class="flex gap-1">
@@ -18,36 +23,37 @@
         </div>
 
         <div class="inline-grid gap-4 grid-cols-4 grid-rows-5" id="calculator">
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('(')">(</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked(')')">)</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('AC')">AC</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('/')">/</div>
+            <div class="operatrice" (click)="onButtonClicked('(')">(</div>
+            <div class="operatrice" (click)="onButtonClicked(')')">)</div>
+            <div class="operatrice" (click)="onButtonClicked('AC')">AC</div>
+            <div class="operateur" (click)="onButtonClicked('/')">÷</div>
 
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('7')">7</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('8')">8</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('9')">9</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('*')">*</div>
+            <div class="number" (click)="onButtonClicked('7')">7</div>
+            <div class="number" (click)="onButtonClicked('8')">8</div>
+            <div class="number" (click)="onButtonClicked('9')">9</div>
+            <div class="operateur" (click)="onButtonClicked('*')">*</div>
 
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('4')">4</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('5')">5</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('6')">6</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('-')">-</div>
+            <div class="number" (click)="onButtonClicked('4')">4</div>
+            <div class="number" (click)="onButtonClicked('5')">5</div>
+            <div class="number" (click)="onButtonClicked('6')">6</div>
+            <div class="operateur" (click)="onButtonClicked('-')">-</div>
 
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('1')">1</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('2')">2</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('3')">3</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('+')">+</div>
+            <div class="number" (click)="onButtonClicked('1')">1</div>
+            <div class="number" (click)="onButtonClicked('2')">2</div>
+            <div class="number" (click)="onButtonClicked('3')">3</div>
+            <div class="operateur" (click)="onButtonClicked('+')">+</div>
 
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('0')">0</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('.')">,</div>
-            <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('=')">=</div>
-            <div class="border-2 border-solid border-black p-1 text-center cursor-pointer" (click)="ajouterALaListe()">
-                Enter</div>
+            <div class="number" (click)="onButtonClicked('0')">0</div>
+            <div class="number" (click)="onButtonClicked('.')">,</div>
+            <div class="operateur" (click)="onButtonClicked('=')">=</div>
+            <div class="operatrice" (click)="ajouterALaListe()">
+                ↲</div>
         </div>
     </div>
-    <div class="flex flex-col gap-2 p-4 w-full">
+
+    <div class="flex flex-col gap-2 p-4 w-full" id="inventory" *ngIf="isInventoryVisible">
         <ul class="list-none flex flex-col gap-2">
-            <li class="border-2 border-solid border-black p-3 flex justify-between" *ngFor="let calcul of listeCalculs"
+            <li class="shadow-lg shadow-black-500/40 rounded-xl p-3 flex justify-between" *ngFor="let calcul of listeCalculs"
                 (click)="selectionnerElement(calcul)">
                 <div>
                     {{ calcul.titre }}
@@ -58,13 +64,13 @@
             </li>
         </ul>
 
-        <div class="flex gap-2 justify-center">
-            <div class="flex bg-slate-200 p-3 rounded-xl">
+        <div class="flex gap-2 justify-center m-2">
+            <div class="flex bg-green-500 p-3 rounded-xl text-white">
                 <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
-                <button (click)="fileInput.click()">Importer un fichier CSV</button>
+                <button (click)="fileInput.click()">Importer un CSV</button>
             </div>
-            <button class="bg-slate-200 p-3 rounded-xl">imprimer</button>
-            <button class="bg-slate-200 p-3 rounded-xl" (click)="exportToCSV()">Exporter en CSV</button>
+            <button class="bg-rose-600 p-3 rounded-xl text-white">Imprimer</button>
+            <button class="bg-violet-600 p-3 rounded-xl text-white" (click)="exportToCSV()">Exporter en CSV</button>
         </div>
     </div>
 </section>
