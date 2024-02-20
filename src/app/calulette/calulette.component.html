@@ -1,11 +1,11 @@
 <section class="flex gap-2">
-    <div class="flex flex-col gap-2 p-4">
+    <div class="flex flex-col gap-2 p-4 w-full">
         <div class="border-2 border-solid border-black flex flex-col gap-2">
             <input type="text" name="produit" id="produit" [(ngModel)]="produit" placeholder="Nom du produit" />
-            <input type="text" name="calcule" id="calcule" [(ngModel)]="calcule">
+            <input type="text" name="calcule" id="calcule" [(ngModel)]="calcule" readonly>
             <div class="flex gap-1">
-                <div>
-                    <input class="w-full" type="text" name="total" id="total" [(ngModel)]="total">
+                <div class="w-full">
+                    <input class="w-full" type="text" name="total" id="total" [(ngModel)]="total" readonly>
                 </div>
                 <select name="unite" id="unite" [(ngModel)]="unite">
                     <option value="m²">m²</option>
@@ -41,14 +41,16 @@
             <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('0')">0</div>
             <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('.')">,</div>
             <div class="border-2 border-solid border-black p-1 text-center" (click)="onButtonClicked('=')">=</div>
-            <div class="border-2 border-solid border-black p-1 text-center cursor-pointer" (click)="ajouterALaListe()">Enter</div>
+            <div class="border-2 border-solid border-black p-1 text-center cursor-pointer" (click)="ajouterALaListe()">
+                Enter</div>
         </div>
     </div>
     <div class="flex flex-col gap-2 p-4 w-full">
         <ul class="list-none flex flex-col gap-2">
-            <li class="border-2 border-solid border-black p-3 flex justify-between" *ngFor="let calcul of listeCalculs">
+            <li class="border-2 border-solid border-black p-3 flex justify-between" *ngFor="let calcul of listeCalculs"
+                (click)="selectionnerElement(calcul)">
                 <div>
-                    {{ calcul.titre }} 
+                    {{ calcul.titre }}
                 </div>
                 <div>
                     {{ calcul.resultat }}{{ calcul.unite }}
@@ -57,9 +59,12 @@
         </ul>
 
         <div class="flex gap-2 justify-center">
-            <button class="bg-slate-200 p-3 rounded-xl">importer un csv</button>
+            <div class="flex bg-slate-200 p-3 rounded-xl">
+                <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
+                <button (click)="fileInput.click()">Importer un fichier CSV</button>
+            </div>
             <button class="bg-slate-200 p-3 rounded-xl">imprimer</button>
-            <button class="bg-slate-200 p-3 rounded-xl">exporter un csv</button>
+            <button class="bg-slate-200 p-3 rounded-xl" (click)="exportToCSV()">Exporter en CSV</button>
         </div>
     </div>
 </section>
