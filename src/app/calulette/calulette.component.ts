@@ -9,14 +9,13 @@ interface Calcul {
 }
 
 @Component({
-  selector: 'app-calulette',
-  standalone: true,
-  imports: [
-    FormsModule,
-    CommonModule
-  ],
-  templateUrl: './calulette.component.html',
-  styleUrls: ['./calulette.component.scss'],
+    selector: 'app-calulette',
+    imports: [
+        FormsModule,
+        CommonModule
+    ],
+    templateUrl: './calulette.component.html',
+    styleUrls: ['./calulette.component.scss']
 })
 export class CaluletteComponent {
   calcule = '';
