@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { CaluletteComponent } from "./calulette/calulette.component";
 
@@ -7,11 +7,7 @@ import { CaluletteComponent } from "./calulette/calulette.component";
     selector: 'app-root',
     styles: ``,
     templateUrl: './app.component.html',
-    imports: [CommonModule,
-        RouterOutlet,
-        RouterModule,
-        CaluletteComponent,
-    ]
+    imports: [RouterOutlet, RouterModule, CaluletteComponent]
 })
 export class AppComponent {
   title = 'calculette';

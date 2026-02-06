@@ -1,6 +1,6 @@
 import { FormsModule } from '@angular/forms';
 import { Component, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 interface Calcul {
   titre: string;
@@ -11,9 +11,8 @@ interface Calcul {
 @Component({
     selector: 'app-calulette',
     imports: [
-        FormsModule,
-        CommonModule
-    ],
+    FormsModule
+],
     templateUrl: './calulette.component.html',
     styleUrls: ['./calulette.component.scss']
 })

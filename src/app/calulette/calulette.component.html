@@ -1,59 +1,58 @@
 <div class="flex justify-center gap-4">
-    <button class="btn"(click)="toggleCalculatorVisibility()">Saisie</button>
-    <button class="btn" (click)="toggleInventoryVisibility()">Inventaire</button>
+  <button class="btn"(click)="toggleCalculatorVisibility()">Saisie</button>
+  <button class="btn" (click)="toggleInventoryVisibility()">Inventaire</button>
 </div>
 
 <section class="flex gap-2 p-4">
-    <div class="flex flex-col gap-2 p-4 w-full shadow-lg shadow-black-500/40 m-2" id="calculator" *ngIf="isCalculatorVisible">
-        <div class="flex flex-col gap-2 p-2">
-            <input class="p-3 shadow-lg shadow-black-500/40 rounded-xl" type="text" name="produit" id="produit" [(ngModel)]="produit" placeholder="Nom du produit" />
-            <input class="shadow-lg shadow-black-500/40 rounded-xl p-2 text-3xl" type="text" name="calcule" id="calcule" [(ngModel)]="calcule" readonly>
-            <div class="flex gap-1">
-                <div class="w-full">
-                    <input class="shadow-lg shadow-black-500/40 rounded-xl w-full text-lg p-2" type="text" name="total" id="total" [(ngModel)]="total" readonly>
-                </div>
-                <select class="shadow-lg shadow-black-500/40 rounded-xl w-1/4 p-2" name="unite" id="unite" [(ngModel)]="unite">
-                    <option value="m²">m²</option>
-                    <option value="ml">ml</option>
-                    <option value="m³">m³</option>
-                    <option value="u">u</option>
-                    <option value="l">l</option>
-                </select>
-            </div>
+  @if (isCalculatorVisible) {
+    <div class="flex flex-col gap-2 p-4 w-full shadow-lg shadow-black-500/40 m-2" id="calculator">
+      <div class="flex flex-col gap-2 p-2">
+        <input class="p-3 shadow-lg shadow-black-500/40 rounded-xl" type="text" name="produit" id="produit" [(ngModel)]="produit" placeholder="Nom du produit" />
+        <input class="shadow-lg shadow-black-500/40 rounded-xl p-2 text-3xl" type="text" name="calcule" id="calcule" [(ngModel)]="calcule" readonly>
+        <div class="flex gap-1">
+          <div class="w-full">
+            <input class="shadow-lg shadow-black-500/40 rounded-xl w-full text-lg p-2" type="text" name="total" id="total" [(ngModel)]="total" readonly>
+          </div>
+          <select class="shadow-lg shadow-black-500/40 rounded-xl w-1/4 p-2" name="unite" id="unite" [(ngModel)]="unite">
+            <option value="m²">m²</option>
+            <option value="ml">ml</option>
+            <option value="m³">m³</option>
+            <option value="u">u</option>
+            <option value="l">l</option>
+          </select>
         </div>
-
-        <div class="inline-grid gap-4 grid-cols-4 grid-rows-5" id="calculator">
-            <div class="operatrice" (click)="onButtonClicked('(')">(</div>
-            <div class="operatrice" (click)="onButtonClicked(')')">)</div>
-            <div class="operatrice" (click)="onButtonClicked('AC')">AC</div>
-            <div class="operateur" (click)="onButtonClicked('/')">÷</div>
-
-            <div class="number" (click)="onButtonClicked('7')">7</div>
-            <div class="number" (click)="onButtonClicked('8')">8</div>
-            <div class="number" (click)="onButtonClicked('9')">9</div>
-            <div class="operateur" (click)="onButtonClicked('*')">*</div>
-
-            <div class="number" (click)="onButtonClicked('4')">4</div>
-            <div class="number" (click)="onButtonClicked('5')">5</div>
-            <div class="number" (click)="onButtonClicked('6')">6</div>
-            <div class="operateur" (click)="onButtonClicked('-')">-</div>
-
-            <div class="number" (click)="onButtonClicked('1')">1</div>
-            <div class="number" (click)="onButtonClicked('2')">2</div>
-            <div class="number" (click)="onButtonClicked('3')">3</div>
-            <div class="operateur" (click)="onButtonClicked('+')">+</div>
-
-            <div class="number" (click)="onButtonClicked('0')">0</div>
-            <div class="number" (click)="onButtonClicked('.')">,</div>
+      </div>
+      <div class="inline-grid gap-4 grid-cols-4 grid-rows-5" id="calculator">
+        <div class="operatrice" (click)="onButtonClicked('(')">(</div>
+        <div class="operatrice" (click)="onButtonClicked(')')">)</div>
+        <div class="operatrice" (click)="onButtonClicked('AC')">AC</div>
+        <div class="operateur" (click)="onButtonClicked('/')">÷</div>
+        <div class="number" (click)="onButtonClicked('7')">7</div>
+        <div class="number" (click)="onButtonClicked('8')">8</div>
+        <div class="number" (click)="onButtonClicked('9')">9</div>
+        <div class="operateur" (click)="onButtonClicked('*')">*</div>
+        <div class="number" (click)="onButtonClicked('4')">4</div>
+        <div class="number" (click)="onButtonClicked('5')">5</div>
+        <div class="number" (click)="onButtonClicked('6')">6</div>
+        <div class="operateur" (click)="onButtonClicked('-')">-</div>
+        <div class="number" (click)="onButtonClicked('1')">1</div>
+        <div class="number" (click)="onButtonClicked('2')">2</div>
+        <div class="number" (click)="onButtonClicked('3')">3</div>
+        <div class="operateur" (click)="onButtonClicked('+')">+</div>
+        <div class="number" (click)="onButtonClicked('0')">0</div>
+        <div class="number" (click)="onButtonClicked('.')">,</div>
             <div class="operateur" (click)="onButtonClicked('=')">=</div>
             <div class="operatrice" (click)="ajouterALaListe()">
                 ↲</div>
         </div>
     </div>
+}
 
-    <div class="flex flex-col gap-2 p-4 w-full" id="inventory" *ngIf="isInventoryVisible">
+    @if (isInventoryVisible) {
+<div class="flex flex-col gap-2 p-4 w-full" id="inventory">
         <ul class="list-none flex flex-col gap-2">
-            <li class="shadow-lg shadow-black-500/40 rounded-xl p-3 flex justify-between gap-4 hover:bg-slate-300 hover:cursor-pointer" *ngFor="let calcul of listeCalculs"
+            @for (calcul of listeCalculs; track calcul) {
+<li class="shadow-lg shadow-black-500/40 rounded-xl p-3 flex justify-between gap-4 hover:bg-slate-300 hover:cursor-pointer"
                 (click)="selectionnerElement(calcul)">
                 <div>
                     {{ calcul.titre }}
@@ -62,6 +61,7 @@
                     {{ calcul.resultat }}{{ calcul.unite }}
                 </div>
             </li>
+}
         </ul>
 
         <div class="flex gap-2 justify-center m-2">
@@ -73,4 +73,5 @@
             <button class="bg-violet-600 p-3 rounded-xl text-white" (click)="exportToCSV()">Exporter en CSV</button>
         </div>
     </div>
+}
 </section>
